@@ -1,4 +1,4 @@
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 from datetime import datetime
 
@@ -12,7 +12,7 @@ def mask_account_card(cards_number: str) -> str:
 
     else:
         card = get_mask_card_number(cards_number[-16:])
-        mask_card = cards_number.replace(cards_number[-16:], card)
+        mask_card = cards_number.replace(cards_number[-16:], str(card))
         return mask_card
 
 
@@ -26,4 +26,3 @@ def get_data(data: str) -> str:
 if __name__ == "__main__":
     print(mask_account_card("Счет 64686473678894779589"))
     print(get_data("2018-07-11T02:26:18.671407"))
-
