@@ -3,7 +3,7 @@ import pytest
 
 @pytest.fixture
 def card_number():
-    return "77000792289606361"
+    return "7000792289606361"
 
 
 @pytest.fixture
@@ -29,3 +29,8 @@ def list_id():
 @pytest.fixture
 def state():
     return "EXECUTED"
+
+
+@pytest.fixture
+def is_reverse():
+    return True
