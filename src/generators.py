@@ -84,7 +84,7 @@ transactions = [
 
 def filter_by_currency(transactions, currency):
     """Функция-генератор, возвращающая итератор, который поочередно выдает
-    транзакции, где валюта операции соответствует заданной"""
+    транзакции, где валюта операции соответствует заданной."""
 
     for transaction in transactions:
         if transaction["operationAmount"]["currency"]["code"] == currency:
@@ -92,10 +92,22 @@ def filter_by_currency(transactions, currency):
 
 
 def transaction_descriptions(transactions):
-    """Функция-генератор, возвращающая описание каждой операции по очереди"""
+    """Функция-генератор, возвращающая описание каждой операции по очереди."""
 
     for transaction in transactions:
         yield transaction.get("description")
+
+
+def card_number_generator(start, stop):
+    """Функция-генератор, возвращающая номера банковских карт в формате
+    XXXX XXXX XXXX XXXX, где X — цифра номера карты."""
+
+    for number in range(start, stop + 1):
+        number_str = f"{number:016}"
+        card_number = f"{number_str[:4]} {number_str[4:8]} {number_str[8:12]} {number_str[12:]}"
+        yield card_number
+
+
 
 
 if __name__ == "__main__":
@@ -105,3 +117,5 @@ if __name__ == "__main__":
     descriptions = transaction_descriptions(transactions)
     for _ in range(5):
         print(next(descriptions))
+    for card_number in card_number_generator(1, 5):
+        print(card_number)
