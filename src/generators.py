@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Generator
 
 transactions: List[Dict[str, dict]]
 
@@ -81,6 +81,7 @@ transactions = [
         }
     ]
 
+
 def filter_by_currency(transactions, currency):
     """Функция-генератор, возвращающая итератор, который поочередно выдает
     транзакции, где валюта операции соответствует заданной"""
@@ -90,7 +91,17 @@ def filter_by_currency(transactions, currency):
             yield transaction
 
 
+def transaction_descriptions(transactions):
+    """Функция-генератор, возвращающая описание каждой операции по очереди"""
+
+    for transaction in transactions:
+        yield transaction.get("description")
+
+
 if __name__ == "__main__":
     usd_transactions = filter_by_currency(transactions, "USD")
     for _ in range(2):
         print(next(usd_transactions))
+    descriptions = transaction_descriptions(transactions)
+    for _ in range(5):
+        print(next(descriptions))
