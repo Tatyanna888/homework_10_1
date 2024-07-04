@@ -12,6 +12,7 @@ def filter_by_currency(transactions: List[Dict[str, Any]], currency: str) -> Gen
             yield transaction
 
 
+
 def transaction_descriptions(transactions: List[Dict[str, Any]]) -> Generator[Any | None, None, None]:
     """Функция-генератор, возвращающая описание каждой операции по очереди."""
 

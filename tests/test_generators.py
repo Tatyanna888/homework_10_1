@@ -16,14 +16,16 @@ def test_filter_by_currency(transactions, currency):
                                'to': 'Счет 74489636417521191160'}
 
 
-# def test_filter_by_currency_(transactions, currency):
-#     generator = filter_by_currency(transactions, "EVRO")
-#     with pytest.raises(ValueError): == "Транзакции в заданной валюте отсутствуют"
+def test_filter_by_wrong_currency(transactions, currency):
+    generator = filter_by_currency(transactions, "EVRO")
+    with pytest.raises(StopIteration):
+        next(generator)
 
 
-# def test_filter_by_currency_(transactions, currency):
-#     generator = filter_by_currency({}, "USD")
-#     assert next(generator) == None
+def test_filter_by_currency_empty(transactions, currency):
+    generator = filter_by_currency([], "")
+    with pytest.raises(StopIteration):
+        next(generator)
 
 
 def test_transaction_descriptions(transactions):
@@ -35,9 +37,10 @@ def test_transaction_descriptions(transactions):
     assert next(generator) == "Перевод организации"
 
 
-# def test_transaction_descriptions_empty(transactions):
-#     generator = transaction_descriptions({})
-#     assert next(generator) is None
+def test_transaction_descriptions_empty(transactions):
+    generator = transaction_descriptions([])
+    with pytest.raises(StopIteration):
+        next(generator)
 
 
 def test_card_number_generator(start, stop):
@@ -47,18 +50,3 @@ def test_card_number_generator(start, stop):
     assert next(generator) == "0000 0000 0000 0003"
     assert next(generator) == "0000 0000 0000 0004"
     assert next(generator) == "0000 0000 0000 0005"
-
-
-    # generator = filter_by_currency(transactions, "EVRO")
-    # assert next(generator) == "Транзакции в заданной валюте отсутствуют"
-
-    # assert next(filter_by_currency(transactions, "USD"))
-
-    # generator = infinite_sequence()
-    # assert next(generator) == 1
-    # assert next(generator) == 2
-    # assert next(generator) == 3
-    #
-    # expected_result = [0, 4, 16, 36, 64]
-    # result = list((x * x for x in range(10) if x % 2 == 0))
-    # assert result == expected_result
