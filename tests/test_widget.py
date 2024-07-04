@@ -18,5 +18,19 @@ def test_mask_account_card(cards_number, expected):
     assert mask_account_card(cards_number) == expected
 
 
+def test_mask_account_card_empty():
+    assert mask_account_card("") == "None"
+
+
 def test_get_data(data):
     assert get_data(data) == "11.07.2018"
+
+
+def test_get_data_empty():
+    with pytest.raises(ValueError):
+        get_data("")
+
+
+def test_get_data_empty_all():
+    with pytest.raises(TypeError):
+        get_data()
