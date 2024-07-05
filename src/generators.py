@@ -1,44 +1,36 @@
-import pytest
+from typing import Any, Dict, Generator, List
+
+transactions: List[Dict[str, Any]]
 
 
-@pytest.fixture
-def card_number():
-    return "7000792289606361"
+def filter_by_currency(transactions: List[Dict[str, Any]], currency: str) -> Generator[Dict[str, Any], None, None]:
+    """Функция-генератор, возвращающая итератор, который поочередно выдает
+    транзакции, где валюта операции соответствует заданной."""
+
+    for transaction in transactions:
+        if transaction["operationAmount"]["currency"]["code"] == currency:
+            yield transaction
 
 
-@pytest.fixture
-def account_number():
-    return "73654108430135874305"
+
+def transaction_descriptions(transactions: List[Dict[str, Any]]) -> Generator[Any | None, None, None]:
+    """Функция-генератор, возвращающая описание каждой операции по очереди."""
+
+    for transaction in transactions:
+        yield transaction.get("description")
 
 
-@pytest.fixture
-def data():
-    return "2018-07-11T02:26:18.671407"
+def card_number_generator(start: int, stop: int) -> Generator:
+    """Функция-генератор, возвращающая номера банковских карт в формате
+    XXXX XXXX XXXX XXXX, где X — цифра номера карты."""
+
+    for number in range(start, stop + 1):
+        number_str = f"{number:016}"
+        card_number = f"{number_str[:4]} {number_str[4:8]} {number_str[8:12]} {number_str[12:]}"
+        yield card_number
 
 
-@pytest.fixture
-def list_id():
-    return [
-    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-]
-
-
-@pytest.fixture
-def state():
-    return "EXECUTED"
-
-
-@pytest.fixture
-def is_reverse():
-    return True
-
-
-@pytest.fixture
-def transactions():
-    return [
+transactions = [
     {
         "id": 939719570,
         "state": "EXECUTED",
@@ -87,16 +79,12 @@ def transactions():
 ]
 
 
-@pytest.fixture
-def currency():
-    return "USD"
-
-
-@pytest.fixture
-def start():
-    return "0000 0000 0000 0001"
-
-
-@pytest.fixture
-def stop():
-    return "0000 0000 0000 0005"
+if __name__ == "__main__":
+    usd_transactions = filter_by_currency(transactions, "USD")
+    for _ in range(2):
+        print(next(usd_transactions))
+    descriptions = transaction_descriptions(transactions)
+    for _ in range(5):
+        print(next(descriptions))
+    for card_number in card_number_generator(1, 5):
+        print(card_number)
