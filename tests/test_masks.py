@@ -1,6 +1,6 @@
 import pytest
 
-from src.masks import get_mask_card_number, get_mask_account
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def test_get_mask_card_number(card_number):
@@ -8,7 +8,7 @@ def test_get_mask_card_number(card_number):
 
 
 def test_get_mask_card_number_empty(card_number):
-    assert get_mask_card_number("") == None
+    assert get_mask_card_number("") is None
 
 
 def test_get_mask_card_number_not_string(card_number):
@@ -16,13 +16,12 @@ def test_get_mask_card_number_not_string(card_number):
         get_mask_card_number(4552548)
 
 
-
 def test_get_mask_account(account_number):
     assert get_mask_account(account_number) == "**4305"
 
 
 def test_get_mask_account_empty(account_number):
-    assert get_mask_account("") == None
+    assert get_mask_account("") is None
 
 
 def test_get_mask_account_empty_not_string(account_number):
