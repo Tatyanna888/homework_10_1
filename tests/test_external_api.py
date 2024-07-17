@@ -22,6 +22,15 @@ def test_get_amount_transaction_in_rub(mock_get):
 
 
 # @patch('requests.get')
+# def test_get_amount_transaction_in_rub_3(mock_get):
+#     transaction = {"amount": 60030.73, "currency": "USD"}
+#     mock_get.return_value.json.return_value = {'info': {'rate': 88.50045}}
+#     # assert get_amount_transaction_in_rub(transaction) == 5312746.62
+#     assert get_amount_transaction_in_rub(transaction) == 0.0
+#     mock_get.assert_called_once_with(f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=60030.73")
+
+
+# @patch('requests.get')
 # def test_get_amount_transaction_in_rub_1(mock_get):
 #     transaction = {"amount": 100, "currency": "USD"}
 #     mock_get.return_value.json.return_value = {'rate': 88.174978, 'result': 5293208.297074}
