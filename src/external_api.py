@@ -17,7 +17,7 @@ def get_amount_transaction_in_rub(transaction: dict) -> Any:
         if currency == "RUB":
             return amount
         else:
-            load_dotenv()
+            load_dotenv("../.env")
             api_key = os.getenv("API_KEY")
             url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}"
             headers = {"apikey": api_key}
@@ -26,6 +26,7 @@ def get_amount_transaction_in_rub(transaction: dict) -> Any:
             status_code = response.status_code
             if status_code == 200:
                 data = response.json()
+                print(data)
                 return round(data["result"], 2)
             else:
                 print(f"Запрос не был успешным. Возможная причина: {response.reason}")

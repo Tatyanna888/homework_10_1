@@ -6,10 +6,10 @@ def get_transactions(path: str) -> list:
     возвращает список словарей с данными о финансовых транзакциях"""
     try:
         with open(path, "r", encoding="utf-8") as operations_file:
-            transactions = json.load(operations_file)
+            transactions_list = json.load(operations_file)
 
-            if isinstance(transactions, list):
-                return transactions
+            if isinstance(transactions_list, list):
+                return transactions_list
             else:
                 return []
 
