@@ -26,3 +26,31 @@ my_function ok
 my_function ok
 my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
 my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 
+my_function ok
+my_function ok
+my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
+my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 
+my_function ok
+my_function ok
+my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
+my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 
+my_function ok
+my_function ok
+my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
+my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 
+my_function ok
+my_function ok
+my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
+my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 
+my_function ok
+my_function ok
+my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
+my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 
+my_function ok
+my_function ok
+my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
+my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 
+my_function ok
+my_function ok
+my_function error: my_function() got an unexpected keyword argument 'filename'. Inputs: (1, 2), {'filename': 'mylog.txt'} 
+my_function error: can only concatenate str (not "list") to str. Inputs: ('1', [2]), {} 

@@ -1,17 +1,9 @@
-import pytest
 import unittest
+from unittest.mock import mock_open, patch
+
 import pandas as pd
+
 from src.transactions_csv_xlsx import read_csv, read_xlsx
-from unittest.mock import patch, mock_open
-
-
-@patch("builtins.open", new_callable=mock_open, read_data="data")
-def test_get_info_transactions_csv_xlsx(mock_file):
-    assert open("../Data/test_transactions_csv.csv").read() == "data"
-    mock_file.assert_called_with("../Data/test_transactions_csv.csv")
-
-    assert open("../data/test_transactions_excel.xlsx").read() == "data"
-    mock_file.assert_called_with("../data/test_transactions_excel.xlsx")
 
 
 class TestReadCsvTransactions(unittest.TestCase):
@@ -46,8 +38,8 @@ class TestReadCsvTransactions(unittest.TestCase):
                 "operationAmount": {"amount": "200.0", "currency": {"name": "EUR", "code": "EUR"}},
                 "description": "payment",
                 "from": "account2",
-                "to": "account3",
-            },
+                "to": "account3"
+            }
         ]
         self.assertEqual(result, expected_result)
 
@@ -63,7 +55,7 @@ def test_read_xlsx():
         "currency_code": ["USD", "EUR"],
         "description": ["Test transaction", "Another transaction"],
         "from": ["Account 1", "Account 2"],
-        "to": ["Account 2", "Account 3"],
+        "to": ["Account 2", "Account 3"]
     }
     df = pd.DataFrame(data)
 
@@ -78,7 +70,7 @@ def test_read_xlsx():
             "operationAmount": {"amount": 100, "currency": {"name": "USD", "code": "USD"}},
             "description": "Test transaction",
             "from": "Account 1",
-            "to": "Account 2",
+            "to": "Account 2"
         }
         assert result[1] == {
             "id": 2,
@@ -87,5 +79,5 @@ def test_read_xlsx():
             "operationAmount": {"amount": 200, "currency": {"name": "EUR", "code": "EUR"}},
             "description": "Another transaction",
             "from": "Account 2",
-            "to": "Account 3",
+            "to": "Account 3"
         }
