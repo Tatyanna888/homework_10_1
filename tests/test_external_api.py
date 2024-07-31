@@ -1,6 +1,6 @@
-from src.external_api import get_amount_transaction_in_rub
-
 from unittest.mock import patch
+
+from src.external_api import get_amount_transaction_in_rub
 
 
 @patch("requests.get")

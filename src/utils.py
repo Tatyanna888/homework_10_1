@@ -1,6 +1,8 @@
 import json
 import logging
 
+from src.transactions_csv_xlsx import read_csv, read_xlsx
+
 logger = logging.getLogger("utils")
 logger.setLevel(logging.INFO)
 file_handler = logging.FileHandler("../logs/utils.log", "w", encoding="utf-8")
@@ -37,3 +39,9 @@ def get_transactions(path: str) -> list:
 if __name__ == "__main__":
     path = "../data/operations.json"
     print(get_transactions(path))
+
+    file_name = "../data/transactions.csv"
+    print(read_csv(file_name))
+
+    file_name = "../data/transactions_excel.xlsx"
+    print(read_xlsx(file_name))
